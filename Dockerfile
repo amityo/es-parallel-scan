@@ -5,7 +5,7 @@ RUN find /app -name "*.pyc" -type f -delete | xargs rm -rf
 
 
 RUN pip install --upgrade pip && \
-    pip install -r /app/requirements.txt
+    pip install -r /code/requirements.txt
 
 WORKDIR /code
 
