@@ -12,11 +12,9 @@ def get_shards_to_routing(client, index, doc_type):
         r = client.search_shards(index, doc_type, routing=i)
         shard_number = r['shards'][0][0]['shard']
         if shard_number not in shards:
-            print(shard_number, i)
             shards[shard_number] = i
         i += 1
 
-    print(shards)
     return shards
 
 

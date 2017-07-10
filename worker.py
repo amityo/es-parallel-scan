@@ -1,13 +1,5 @@
-import json
-
 from app.utils import parse_args, get_arg_parser, init_es
-from app.shards import scan_shard
-
-
-def get_routing_by_shard_config():
-    with open('shards.json', 'r') as f:
-        shards_to_routing = json.load(f)
-        return shards_to_routing[args.shard]
+from app.shards import scan_shard, get_shards_to_routing
 
 if __name__ == '__main__':
     parser = get_arg_parser()
@@ -15,7 +7,8 @@ if __name__ == '__main__':
 
     es = init_es(args)
 
-    routing = get_routing_by_shard_config()
+    shards_to_routing = get_shards_to_routing(es, args.index, args.doc_type)
+    routing = shards_to_routing[args.shard]
 
     query = {"query": {"match_all": {}}}
 
