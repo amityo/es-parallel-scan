@@ -25,15 +25,3 @@ if __name__ == '__main__':
 
     pool.close()
     pool.join()
-
-
-# def worker(args, routing):
-#     print(f'[{datetime.now().time()}] Starting: {multiprocessing.current_process().name} Pid: {multiprocessing.current_process().pid}')
-#     _es = init_es(args)
-#
-#     query = {"query": {"match_all": {}}}
-#     docs = []
-#     scan_shard(_es, args.index, args.doc_type, query, routing, lambda doc: docs.append(doc))
-#     print(f'[{datetime.now().time()}] Name: {multiprocessing.current_process().name} Pid: {multiprocessing.current_process().pid} Result: {routing}=={len(docs)}')
-#     sleep(5)
-#     print(f'[{datetime.now().time()}] Exiting: {multiprocessing.current_process().name} Pid: {multiprocessing.current_process().pid}')

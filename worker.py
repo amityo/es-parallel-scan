@@ -18,6 +18,8 @@ if __name__ == '__main__':
     routing = get_routing_by_shard_config()
 
     query = {"query": {"match_all": {}}}
+
+    # Example - count documents
     docs = []
 
     scan_shard(es, args.index, args.doc_type, query, routing, lambda doc: docs.append(doc))
