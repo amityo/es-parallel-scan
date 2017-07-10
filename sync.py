@@ -15,7 +15,3 @@ if __name__ == '__main__':
         print(f"shard: {shard}, routing: {routing}")
         query = {"query": {"match_all": {}}}
         scan_shard(es, args.index, args.doc_type, query, routing, lambda doc: print(doc))
-
-
-
-
