@@ -18,7 +18,7 @@ ExecStart=/bin/sh -c '\
         -e ES_PORT="" \
         -e INDEX="" \
         -e DOC_TYPE="" \
-        -e ROUTING="%i" \
+        -e SHARD="%i" \
         amityo/es-parallel \
     '
 ExecStop=/usr/bin/docker stop %p-%i
