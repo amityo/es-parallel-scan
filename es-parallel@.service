@@ -1,0 +1,25 @@
+[Unit]
+Description=Es Parallel
+After=docker.service
+Requires=docker.service
+
+[Service]
+TimeoutSec=0
+Restart=no
+EnvironmentFile=/etc/environment
+ExecStartPre=-/usr/bin/docker kill %p-%i
+ExecStartPre=-/usr/bin/docker rm %p-%i
+ExecStartPre=/usr/bin/docker pull amityo/es-parallel
+
+ExecStart=/bin/sh -c '\
+    /usr/bin/docker run \
+        --name %p-%i \
+        -e ES_HOST="" \
+        -e ES_PORT="" \
+        -e INDEX="" \
+        -e DOC_TYPE="" \
+        -e SHARD="%i" \
+        amityo/es-parallel \
+    '
+ExecStop=/usr/bin/docker stop %p-%i
+ExecStopPost=-/usr/bin/docker rm %p-%i
