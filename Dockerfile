@@ -1,7 +1,7 @@
 FROM python:3.6-alpine
 
 ADD . /code/
-RUN find /app -name "*.pyc" -type f -delete | xargs rm -rf
+RUN find /code -name "*.pyc" -type f -delete | xargs rm -rf
 
 
 RUN pip install --upgrade pip && \

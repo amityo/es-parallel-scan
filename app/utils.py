@@ -16,7 +16,7 @@ def get_arg_parser():
     parser = ArgumentParser()
     parser.add_argument("-i", "--index")
     parser.add_argument("-d", "--doc-type")
-    parser.add_argument("-s", "--shard")
+    parser.add_argument("-s", "--shard", type=str)
     parser.add_argument("--es-host")
     parser.add_argument("--es-port", type=int)
     parser.add_argument("--es-auth")
@@ -30,7 +30,7 @@ def parse_args(parser):
 
     args.index = args.index or os.environ.get("INDEX")
     args.doc_type = args.doc_type or os.environ.get("DOC_TYPE")
-    args.shard = args.shard or int(os.environ.get("SHARD", 0))
+    args.shard = args.shard or str(os.environ.get("SHARD", 0))
 
     args.es_host = args.es_host or os.environ.get("ES_HOST")
     args.es_port = args.es_port or int(os.environ.get("ES_PORT", 9200))
