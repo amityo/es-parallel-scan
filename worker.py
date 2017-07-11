@@ -17,6 +17,7 @@ if __name__ == '__main__':
 
     if args.es_direct_node:
         args.es_host = shard_info.address
+        args.es_port = 9200
         es = init_es(args)
 
     print(f"Scanning Shard: #{args.shard} with Routing: {shard_info.routing}, at Node: {args.es_host}")
